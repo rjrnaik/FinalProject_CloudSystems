@@ -1,7 +1,7 @@
 # FinalProject_CloudSystems
-Github repository for Final Project for Cloud Systems
-# Create Docker Image
-## Run the below steps in command prompt:
+
+## Create Docker Image
+### Run the below steps in command prompt:
 >**Note:** Replace the placeholders (`<image-name>`, `<tar-file-creation-name>`, `<container-name>`, `<docker-image-name>`, `<tar-file-name>`) with appropriate values based on your project.
 1. Create Docker file in your project directory
 	Right click -> Create docker
@@ -36,4 +36,26 @@ docker run -d -p 5000:5000 --name <container-name> <docker-image-name>
 7. Verify the container is running
 ```sh
 docker ps
+```
+
+## Create ECR repository in AWS Management Console
+1. After creation of repository click on view Push command (in red)
+![Logo](/screenshot/ECR.png "Picture")
+
+3. Now Authenticate docker to Amazon ECR
+```sh
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 078625870929.dkr.ecr.us-east-1.amazonaws.com	
+```
+
+3.Now tag and push docker image to ECR
+```sh
+docker tag <docker-image-name> <ecr-URI>
+```
+```sh
+docker push <ecr-URI>
+```
+
+4.Check if image is inside ECR repo
+```sh
+aws ecr list-images –repository-name <repo-name> --region us-east-1 
 ```
