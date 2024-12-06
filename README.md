@@ -42,12 +42,12 @@ docker ps
 1. After creation of repository click on view Push command (in red)
 ![Logo](/screenshot/ECR.png "Picture")
 
-3. Now Authenticate docker to Amazon ECR
+2. Now Authenticate docker to Amazon ECR
 ```sh
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 078625870929.dkr.ecr.us-east-1.amazonaws.com	
 ```
 
-3.Now tag and push docker image to ECR
+3. Now tag and push docker image to ECR
 ```sh
 docker tag <docker-image-name> <ecr-URI>
 ```
@@ -55,7 +55,7 @@ docker tag <docker-image-name> <ecr-URI>
 docker push <ecr-URI>
 ```
 
-4.Check if image is inside ECR repo
+4. Check if image is inside ECR repo
 ```sh
 aws ecr list-images –repository-name <repo-name> --region us-east-1 
 ```
